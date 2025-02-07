@@ -10,8 +10,8 @@ const port = parseInt(process.env.PORT, 10) || 3020
 const app = express()
 const consul = new Consul()
 
-console.log('Registering auth service with consul') 
-// We expect only one instance of auth service to be running at a time compared to the other services
+console.log('Registering auth service with consul')
+// We expect only one instance of auth service to be running at a time compared to the other services so no id is needed
 try {
   consul.agent.service.register({
     id: 'auth',

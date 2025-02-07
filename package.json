@@ -15,6 +15,7 @@
     "school": "pnpm --filter @/school",
     "student": "pnpm --filter @/student",
     "auth": "pnpm --filter @/auth",
+    "gateway": "pnpm --filter @/gateway",
     "front": "pnpm --filter @/front"
   },
   "keywords": [],

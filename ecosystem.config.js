@@ -37,6 +37,14 @@ module.exports = {
         POSTGRES_DB: 'user',
         PORT: 3020
       }
+    } /* Only one instance can be run -> Not designed as a cluster unlike the others */,
+    {
+      name: 'gateway',
+      script: './services/gateway/index.js',
+      watch: false,
+      env: {
+        PORT: 3050
+      }
     } /* Only one instance can be run -> Not designed as a cluster unlike the others */
   ]
 }

@@ -58,6 +58,22 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
 
+  services/gateway:
+    dependencies:
+      consul:
+        specifier: ^2.0.1
+        version: 2.0.1
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
+      express:
+        specifier: ^4.21.2
+        version: 4.21.2
+    devDependencies:
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.0
+
   services/school:
     dependencies:
       consul:

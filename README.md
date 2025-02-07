@@ -20,19 +20,21 @@ Sauf qu'il est non finis, buggé et non utilisé dans le fichier docker-compose.
 - Créer un service `school` avec une base de données Postgres
   - [x] Créer des routes pour les écoles
   - [x] Communication avec la BDD
-  - [ ] Ajout d'un middleware JWT pour vérifier les tokens depuis le service `auth`
 - Créer un service `student` avec une base de données MongoDB
   - [x] Créer des routes pour les étudiants
   - [x] Communication avec la BDD
   - [x] Ajouter une communication avec le service `school` pour afficher les écoles selon le schoolId de l'étudiant
-  - [ ] Ajout d'un middleware JWT pour vérifier les tokens depuis le service `auth`
 - Utiliser Consul :
   - [x] Service discovery
-  - [ ] Load balancing
-  - [ ] Gateway API
+  - [wip] Load balancing
+  - [wip] Gateway API
 - Créer un service d'Authentification :
   - [x] Ajouter une vérification de credentials avec génération de token JWT
-  - [A tester] Ajouter une vérification de token JWT via une route
+  - [A tester avec le gateway] Ajouter une vérification de token JWT via une route
+- Créer un ""Gateway API"" :
+  - [wip] Créer un service qui utilise Consul pour rediriger les requêtes vers les services `school` et `student` en vérifiant les tokens JWT
+  - [wip] Ajouter un semi sytème de ""load balancing""" qui utilise Consul
+  - [wip] Ajouter la route pour rediriger vers l'authentification
 
 ## Comment lancer le projet
 
@@ -61,3 +63,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
   - Auth :
     - Via `http://localhost:3020`
 - Le tableau de bord web de Consul devrait être disponible à `http://localhost:8500`
+- Le WIP gateway API devrait être disponible à `http://localhost:3050`
+
+Vous pourrez envoyer les requêtes HTTP aux services directemment pour les tester sans vérification JWT, ou bien passer par le ""gateway API""" afin de tester le ""load balancing""" qui utilise consul avec la vérification de token JWT.
+
+Voici les identifiants par défaut pour l'authentification :
+
+- `mmorgat`: `password`
