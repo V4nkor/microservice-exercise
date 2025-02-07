@@ -2,11 +2,11 @@
 
 ## Description
 
-Ceci est un exercice simple de microservices utilisant NodeJS et Docker. Le projet est divisé en trois services : `school`, `student` et `auth`.
+Ceci est un exercice simple de microservices utilisant NodeJS et Docker. Le projet est divisé en quatres services : `school`, `student`, `auth` et `gateway`.
 
-Le service `school` utilise Postgres comme base de données et le service `student` utilise MongoDB.
+Le service `school` utilise Postgres comme base de données tout comme `auth`, le service `student` utilise MongoDB.
 
-Le service `school` utilise le port `3000` par défaut, le service `student` utilise le port `3010` par défaut et le service `auth` utilise le port `3020` par défaut.
+Le service `school` utilise le port `3000` par défaut, le service `student` utilise le port `3010` par défaut, le service `auth` utilise le port `3020` par défaut et le service `gateway` utilise le port `3050` par défaut.
 
 Consul est utilisé pour la découverte de services et le load balancing.
 
