@@ -62,6 +62,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
     - Via `http://localhost:3010` et `http://localhost:3011`
   - Auth :
     - Via `http://localhost:3020`
+  - Gateway API :
+    - Via `http://localhost:3050`
 - Le tableau de bord web de Consul devrait être disponible à `http://localhost:8500`
 - Le WIP gateway API devrait être disponible à `http://localhost:3050`
 
