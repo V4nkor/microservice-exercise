@@ -1,0 +1,23 @@
+{
+  "name": "@/auth",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consul": "^2.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}

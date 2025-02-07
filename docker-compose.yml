@@ -1,0 +1,159 @@
+services:
+# Postgres database for school microservices
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: mmorgat
+      POSTGRES_PASSWORD: password
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+      - ./postgre-init:/docker-entrypoint-initdb.d
+
+# Postgres database for authentication microservices
+  postgresauth:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: mmorgat
+      POSTGRES_PASSWORD: password
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+      - ./postgresauth-init:/docker-entrypoint-initdb.d
+
+# ! Commented out to liberate computing ressources and since it is not used
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: morgatmathieu@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+  
+# ! Commented out since instances will be launched with pnpm locally
+# First instance of the school microservice
+  #school_first:
+  #  build:
+  #    context: ./
+  #    target: school
+  #  container_name: school_first
+  #  environment:
+  #    CONTAINER_NAME: school_first
+  #    SERVICE_NAME: school
+  #    SERVICE_OUTSIDE_PORT: 3000
+  #    DB_PORT: 5432
+  #    POSTGRES_USER: mmorgat
+  #    POSTGRES_PASSWORD: password
+  #    POSTGRES_DB: school
+  #  ports:
+  #    - "3000:3000"
+  #  depends_on:
+  #    - postgres
+  #    - consul
+  #  networks:
+  #    - consul_network
+    
+# Second instance of the school microservice
+  #school_second:
+  #  build:
+  #    context: ./
+  #    target: school
+  #  container_name: school_second
+  #  environment:
+  #    CONTAINER_NAME: school_second
+  #    SERVICE_NAME: school
+  #    SERVICE_OUTSIDE_PORT: 3001
+  #    DB_PORT: 5432
+  #    POSTGRES_USER: mmorgat
+  #    POSTGRES_PASSWORD: password
+  #    POSTGRES_DB: school
+  #  ports:
+  #    - "3001:3000"
+  #  depends_on:
+  #    - postgres
+  #    - consul
+  #  networks:
+  #    - consul_network
+
+# MongoDB database for student microservices
+  mongodb:
+    image: mongo:6-jammy
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata6:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/init.js
+    networks:
+      - mongo_network
+
+# First instance of the student microservice
+  #student_first:
+  #  build:
+  #    context: ./
+  #    target: student
+  #  container_name: student_first
+  #  environment:
+  #    CONTAINER_NAME: student_first
+  #    SERVICE_NAME: student
+  #    SERVICE_OUTSIDE_PORT: 3002
+  #  ports:
+  #    - "3002:3001"
+  #  depends_on:
+  #    - mongodb
+  #    - consul
+  #  networks:
+  #    - mongo_network
+  #    - consul_network
+
+# Second instance of the student microservice
+  #student_second:
+  #  build:
+  #    context: ./
+  #    target: student
+  #  container_name: student_second
+  #  environment:
+  #    CONTAINER_NAME: student_second
+  #    SERVICE_NAME: student
+  #    SERVICE_OUTSIDE_PORT: 3003
+  #  ports:
+  #    - "3003:3001"
+  #  depends_on:
+  #    - mongodb
+  #    - consul
+  #  networks:
+  #    - mongo_network
+  #    - consul_network
+
+# Consul service for service discovery and load balancing
+#  consul:
+#    image: hashicorp/consul:latest
+#    container_name: consul
+#    ports:
+#      - "8500:8500"
+#    command: agent -dev -client=0.0.0.0
+#    networks:
+#      - consul_network
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
+  dbdata6:
+
+networks:
+  mongo_network:
+    driver: bridge
+#  consul_network:
+#    driver: bridge

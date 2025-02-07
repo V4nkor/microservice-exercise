@@ -1,0 +1,23 @@
+{
+  "name": "@/school",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:second": "PORT=3001 node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consul": "^2.0.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "postgres": "^3.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}

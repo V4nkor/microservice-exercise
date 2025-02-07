@@ -1,0 +1,28 @@
+{
+  "name": "microservices-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "pnpm -r install && consul agent -dev && docker compose up --build && pm2 start ecosystem.config.js",
+    "pm2:start": "pnpm -r install && pm2 start ecosystem.config.js --attach",
+    "pm2:restart": "pm2 restart all",
+    "pm2:list": "pm2 list",
+    "pm2:monit": "pm2 monit",
+    "pm2:stop": "pm2 stop all",
+    "pm2:delete": "pm2 delete all",
+    "start:docker": "docker compose up --build",
+    "consul": "consul agent -dev",
+    "school": "pnpm --filter @/school",
+    "student": "pnpm --filter @/student",
+    "auth": "pnpm --filter @/auth",
+    "front": "pnpm --filter @/front"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "services/*",
+    "apps/*"
+  ],
+  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+}
